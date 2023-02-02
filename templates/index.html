@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+
+{% block body %}
+<div class="container justify-content-start">
+        {% if len > 0 %}
+           <h1> Список кампании </h1>
+            <div class="row ">
+                {% for campaign in Campaigns %}
+                <div class="col-lg-4 mb-3">  <!--эта строка изменена-->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Название кампании: {{campaign.name}}</h5>
+                            <h6 class="card-title">Название приложения: {{campaign.appName}}</h6>
+                            <h7 class="card-subtitle mb-2 text-muted">Дата и время создания: {{campaign.date}}</h7><br>
+                            <h7 class="card-subtitle mb-2 text-muted">Используемые лицензии: {{campaign.license}}</h7>
+    <!--                        <p class="card-text"><span th:utext="${campaign.status}"/></p>-->
+                        </div>
+                        <div class="card-footer">
+                           <a href="/{{campaign.id}}" class="card-text btn btn-primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+           </div>
+    {% else %}
+    <h1>Активных кампании нет</h1><br>
+    <a href="/create" class="card-text btn btn-primary">Создать компанию</a>
+</div>
+
+{% endif %}
+{% endblock %}

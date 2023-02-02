@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создать компанию
+{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <form method="post">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Название кампании"><br>
+            <p><select name="appName" id="appName">
+                <option value="">Выберите приложение</option>
+               {% for appName in names %}
+                <option value="{{appName}}">{{appName}}</option>
+               {% endfor %}
+            </select></p>
+           <input type="text" name="license" id="license" class="form-control" placeholder="Количество лицензии"><br>
+           <input type="submit"  class="btn btn-success" value="Создать компанию">
+        </form>
+    </div>
+{% endblock %}

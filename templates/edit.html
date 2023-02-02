@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование кампании
+{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <h1>Редактировать кампанию</h1>
+        <form method="post">
+            <input type="text" name="name" id="name" class="form-control" value="{{campaign.name}}"><br>
+             <p><select name="appName" id="appName">
+                <option value="{{campaign.appName}}">{{campaign.appName}}</option>
+                 {% for appName in names %}
+                 {% if appName!=campaign.appName %}
+                 <option value={{appName}}>{{appName}}</option>
+                 {% endif %}
+                 {% endfor %}
+            </select></p>
+            <input type="text" name="license" id="license" class="form-control" value="{{campaign.license}}"><br>
+             <div id="tableLOL">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                         <th>N</th>
+                          <th>Number</th>
+                          <th>Status</th>
+                      </tr>
+                      </thead>
+                      <tbody >
+                       <tr>
+                           <td>0</td>
+                           <td><input type="text" name="number" id="number" class="form-control" placeholder="87*********"></td>
+                           <td>0</td>
+                           <td align="right" ><input type="submit" class="btn btn-success" value="Добавить"></td>
+                       </tr>
+                       {% for number in numbers %}
+                       <tr>
+                           <td>{{numbers.index(number)+1}}</td>
+                           <td>{{number.number}}</td>
+                           <td>{{number.status}}</td>
+                           <td align="right" ><a href="{{number.number}}/delete_number" class="card-text btn btn-primary">Удалить</a></td>
+                       </tr>
+                       {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+            <input type="submit" class="btn btn-success" value="Обновить">
+        </form>
+    </div>
+{% endblock %}

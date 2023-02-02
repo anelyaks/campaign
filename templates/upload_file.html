@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Загрузить файл
+{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <h1>Детали кампании</h1>
+        <h2>{{campaign.name}}</h2>
+         <div class="alert alert-info">
+             <p>Название приложения: <b> {{campaign.appName}}</b></p>
+             <p>Дата и время создания: {{campaign.date}}</p>
+             <p>Используемые лицензии: {{campaign.license}}</p>
+             <a href="/{{campaign.id}}//delete" class="btn btn-danger">Удалить</a>
+         </div>
+         <div class="container">
+                <div class="dropzone">
+                    <div class="dz-message needsclick">
+                        <h1>Перетащите или нажмите для загрузки файла</h1>
+                    </div>
+                </div>
+            </div><br>
+            <div class="card-footer">
+                <a href="/{{campaign.id}}" class="card-text btn btn-primary">Загрузить</a>
+           </div>
+            <script>
+            $(document).ready(function(){
+                $(".dropzone").dropzone({
+                  url: '/{{campaign.id}}/upload_file',
+                  width: 300,
+                  height: 300,
+                  progressBarWidth: '100%',
+                  maxFileSize: '500MB',
+                  addRemoveLinks: true,
+                })
+            });
+            </script>
+    </div>
+{% endblock %}
